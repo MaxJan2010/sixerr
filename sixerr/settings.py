@@ -124,6 +124,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# To server static files on heroku
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend'
@@ -133,3 +136,8 @@ LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '259468097756069'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ffe160f7508ce7773d36ff74e42b79f9'
+
+# Replace database setting to use postgres on heroku
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
