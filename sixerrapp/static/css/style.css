@@ -1,5 +1,23 @@
 /* YOUR CUSTOM STYLES */
 
+a {
+  color: #323232;
+}
+
+a:hover {
+  color: #0bb536;
+}
+
+.greentext {
+  color: #0bb536;
+}
+
+#body .banner {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+
 #footer {
   padding: 20px 0;
 }

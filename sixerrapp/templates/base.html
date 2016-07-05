@@ -57,6 +57,7 @@
                   {% if user and not user.is_anonymous %}
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{% static 'img/avatar.png' %}" class="img-circle" height="22" width="22">
                         {{ user.get_full_name|default:user.username }} <span class="caret"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
