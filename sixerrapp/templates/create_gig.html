@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page %}
+  {{ error }}
+  <form enctype="multipart/form-data" method="POST" class="form-group">
+    {% csrf_token %}
+    {{ gig_form }}
+    <button type="submit">Publish</button>
+  </form>
+
+{% endblock %}

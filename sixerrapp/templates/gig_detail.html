@@ -7,15 +7,15 @@
     <div class="col-md-8">
       <div class="card">
           <div class="card-block">
-            <h3>I will create your own website with Django and ReactJS</h3>
+            <h3>{{ gig.title }}</h3>
             <hr>
-            <img src="{% static 'img/gig.png' %}" class="img-fluid center-block">
+            <img src="/media/{{ gig.photo }}" class="img-fluid center-block">
           </div>
       </div>
       <div class="card">
           <h6 class="card-header primary-color white-text">About This Gig</h6>
           <div class="card-block">
-              <p class="card-text">I will create your website in just 2 days.</p>
+              <p class="card-text">{{ gig.description }}</p>
           </div>
       </div>
       <div class="card">
@@ -42,15 +42,15 @@
   <div class="col-md-4">
     <div class="card">
         <div class="card-block">
-            <button type="button" class="btn btn-success btn-block">Order Now (£6)</button>
+            <button type="button" class="btn btn-success btn-block">Order Now (£{{ gig.price }})</button>
         </div>
     </div>
     <div class="card">
         <div class="card-block">
-            <img src="{% static 'img/avatar.png' %}" class="img-circle center-block" height="100" width="100" style="margin-bottom: 10px;">
-            <h4 align="center">Ant Horner</h4>
+            <img src="{{ gig.user.profile.avatar }}" class="img-circle center-block" height="100" width="100" style="margin-bottom: 10px;">
+            <h4 align="center">{{ gig.user.username }}</h4>
             <hr>
-            <p>I have 3 years of experience in Python/Django and ReactJS. I'm a cool guy who likes to get sh!t done.</p>
+            <p>{{ gig.user.profile.about }}</p>
         </div>
     </div>
   </div>

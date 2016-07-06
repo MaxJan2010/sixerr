@@ -7,14 +7,14 @@
       <img src="{% static 'img/banner.gif' %}" alt="Sixerr Banner" class="banner">
     </div>
 
-    {% for i in '12345678' %}
+    {% for gig in gigs %}
       <div class="col-md-3">
         <!--Card-->
         <div class="card">
             <!--Card image-->
             <div class="view overlay hm-white-slight">
-                <img src="{% static 'img/gig.png' %}" class="img-fluid">
-                <a href="{% url 'gig_detail' i %}">
+                <img src="/media/{{ gig.photo }}" class="img-fluid">
+                <a href="{% url 'gig_detail' gig.id %}">
                     <div class="mask"></div>
                 </a>
             </div>
@@ -23,8 +23,8 @@
             <!--Card content-->
             <div class="card-block">
                 <!--Text-->
-                <p class="card-text"><a href="{% url 'gig_detail' i %}">I will create your own website with Django and ReactJS</a></p>
-                <p><span>by <a href="#">Ant Horner</a></span><b class="greentext pull-right">£6</b></p>
+                <p class="card-text"><a href="{% url 'gig_detail' gig.id %}">{{ gig.title }}</a></p>
+                <p><span>by <a href="#">{{ gig.user.username }}</a></span><b class="greentext pull-right">£{{ gig.price }}</b></p>
             </div>
             <!--/.Card content-->
         </div>
