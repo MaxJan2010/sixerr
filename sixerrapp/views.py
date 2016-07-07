@@ -40,7 +40,28 @@ def create_gig(request):
             error = "Something went wrong"
 
     gig_form = GigForm()
-    return render(request, 'create_gig.html', {"gig_form": gig_form, "error": error})
+    return render(request, 'create_gig.html', {"error": error})
+
+
+@login_required(login_url="/")
+def edit_gig(request, id):
+    try:
+        # find all gig objects equal to gig id and user id
+        gig = Gig.objects.get(id=id, user=request.user)
+        error = ''
+        if request.method == 'POST':
+            gig_form = GigForm(request.POST, request.FILES, instance=gig)
+            if gig_form.is_valid():
+                gig.save()
+                return redirect('my_gigs')
+            else:
+                error = "Something went wrong"
+        return render(request, 'edit_gig.html', {"gig": gig, "error": error})
+    except Gig.DoesNotExist:
+        return redirect('/')
+
+    return render(request, 'edit_gig.html', {})
+
 
 @login_required(login_url="/")
 def my_gigs(request):
