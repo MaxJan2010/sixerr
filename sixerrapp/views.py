@@ -4,6 +4,13 @@ from django.contrib.auth.decorators import login_required
 from .models import Gig, Profile
 from .forms import GigForm
 
+import braintree
+
+braintree.Configuration.configure(braintree.Environment.Sandbox,
+                                    merchant_id="kjrhyjymp2cg3nvz",
+                                    public_key="6vq8f4n2gpw8hfgj",
+                                    private_key="9f2f8ba30e9c60cf9805340f53bb91ef")
+
 # Create your views here.
 
 def home(request):
@@ -18,7 +25,10 @@ def gig_detail(request, id):
         gig = Gig.objects.get(id=id)
     except Gig.DoesNotExist:
         return redirect('/')
-    return render(request, 'gig_detail.html', {"gig": gig})
+
+    # generate a client token for braintree
+    client_token = braintree.ClientToken.generate()
+    return render(request, 'gig_detail.html', {"gig": gig, "client_token": client_token})
 
 
 @login_required(login_url="/")
@@ -83,3 +93,24 @@ def profile(request, username):
             return redirect('/')
     gigs = Gig.objects.filter(user=profile.user, status=True)
     return render(request, 'profile.html', {"profile": profile, "gigs": gigs})
+
+
+@login_required(login_url="/")
+def create_purchase(request):
+    if request.method == 'POST':
+        try:
+            gig = Gig.objects.get(id=request.POST['gig_id'])
+        except Gig.DoesNotExist:
+            return redirect('/')
+        nonce = request.POST["payment_method_nonce"]
+        result = braintree.Transaction.sale({
+            "amount": gig.price,
+            "payment_method_nonce": nonce
+        })
+
+        if result.is_success:
+            print("You've bought the gig!")
+        else:
+            print("Something went wrong")
+
+    return redirect('/')
