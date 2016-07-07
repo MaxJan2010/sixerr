@@ -36,6 +36,7 @@ class Gig(models.Model):
 
 class Purchase(models.Model):
     gig = models.ForeignKey(Gig)
+    seller = models.CharField(max_length=100)
     buyer = models.ForeignKey(User)
     time = models.DateTimeField(default=timezone.now)
 

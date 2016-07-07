@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Gig, Profile
+from .models import Gig, Profile, Purchase
 from .forms import GigForm
 
 import braintree
@@ -109,7 +109,7 @@ def create_purchase(request):
         })
 
         if result.is_success:
-            print("You've bought the gig!")
+            Purchase.objects.create(gig=gig, buyer=request.user, seller=gig.user.username)
         else:
             print("Something went wrong")
 
