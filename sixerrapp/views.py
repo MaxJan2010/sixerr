@@ -113,4 +113,14 @@ def create_purchase(request):
         else:
             print("Something went wrong")
 
-    return redirect('/')
+    return redirect('/my_orders/')
+
+@login_required(login_url="/")
+def my_sales(request):
+    purchases = Purchase.objects.filter(gig__user=request.user)
+    return render(request, 'my_sales.html', {"purchases": purchases})
+
+@login_required(login_url="/")
+def my_orders(request):
+    purchases = Purchase.objects.filter(buyer=request.user)
+    return render(request, 'my_orders.html', {"purchases": purchases})
