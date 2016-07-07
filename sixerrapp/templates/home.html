@@ -24,7 +24,8 @@
             <div class="card-block">
                 <!--Text-->
                 <p class="card-text"><a href="{% url 'gig_detail' gig.id %}">{{ gig.title }}</a></p>
-                <p><span>by <a href="#">{{ gig.user.username }}</a></span><b class="greentext pull-right">£{{ gig.price }}</b></p>
+                <p><b class="greentext pull-right">£{{ gig.price }}</b></p>
+                <span>by <a href="{% url 'profile' gig.user.username %}">{{ gig.user.username }}</span></a>
             </div>
             <!--/.Card content-->
         </div>

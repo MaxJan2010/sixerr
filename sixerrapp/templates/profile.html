@@ -2,5 +2,63 @@
 {% load staticfiles %}
 
 {% block page %}
-  Profile Page
+
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="jumbotron" align="center">
+        <h1 class="h1-responsive">{{ profile.user.username }}</h1>
+        {% if request.user == profile.user %}
+          <input name="slogan" value="{{ profile.slogan }}" class="form-control">
+        {% else %}
+          <p class="lead">{{ profile.slogan }}</p>
+        {% endif %}
+
+    </div>
+    <div class="row">
+      <div class="col-md-3" align="center">
+        <div class="jumbotron">
+            <h4 class="text-uppercase">About {{ profile.user.username }}</h4>
+            <img src="{{ profile.avatar }}" class="img-circle" height="120" width="120">
+            <hr class="m-y-2">
+            {% if request.user == profile.user %}
+              <textarea rows="4" name="about" class="form-control" style="min-height: 175px;">{{ profile.about }}</textarea>
+              <button type="submit" class="btn btn-success">Update Profile</button>
+            {% else %}
+              <p class="lead">{{ profile.about }}</p>
+            {% endif %}
+        </div>
+      </div>
+      <div class="col-md-9">
+        <h3 class="text-uppercase"><b>{{ profile.user.username }}'s gigs</b></h3>
+        <div class="row">
+          {% for gig in gigs %}
+            <div class="col-md-3">
+              <!--Card-->
+              <div class="card">
+                  <!--Card image-->
+                  <div class="view overlay hm-white-slight">
+                      <img src="/media/{{ gig.photo }}" class="img-fluid">
+                      <a href="{% url 'gig_detail' gig.id %}">
+                          <div class="mask"></div>
+                      </a>
+                  </div>
+                  <!--/.Card image-->
+
+                  <!--Card content-->
+                  <div class="card-block">
+                      <!--Text-->
+                      <p class="card-text"><a href="{% url 'gig_detail' gig.id %}">{{ gig.title }}</a></p>
+                      <p><b class="greentext pull-right">£{{ gig.price }}</b></p>
+                      <span>by <a href="{% url 'profile' gig.user.username %}">{{ gig.user.username }}</span></a>
+                  </div>
+                  <!--/.Card content-->
+              </div>
+              <!--/.Card-->
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </form>
 {% endblock %}

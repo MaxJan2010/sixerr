@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^create_gig/$', views.create_gig, name='create_gig'),
     url(r'^edit_gig/(?P<id>[0-9]+)/$', views.edit_gig, name='edit_gig'),
     url(r'^gigs/(?P<id>[0-9]+)/$', views.gig_detail, name='gig_detail'),
+    url(r'^profile/(?P<username>\w+)/$', views.profile, name='profile'),
 ]

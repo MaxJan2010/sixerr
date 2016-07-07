@@ -48,7 +48,7 @@
     <div class="card">
         <div class="card-block">
             <img src="{{ gig.user.profile.avatar }}" class="img-circle center-block" height="100" width="100" style="margin-bottom: 10px;">
-            <h4 align="center">{{ gig.user.username }}</h4>
+            <a href="{% url 'profile' gig.user.username %}"><h4 align="center">{{ gig.user.username }}</h4></a>
             <hr>
             <p>{{ gig.user.profile.about }}</p>
         </div>
