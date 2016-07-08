@@ -48,8 +48,13 @@
                     </li>
                 </ul>
                 <!--Search form-->
-                <form class="form-inline" style="margin-left: 25px;">
-                    <input class="form-control" type="text" placeholder="Search">
+                <form class="form-inline" style="margin-left: 25px;" role="search" method="GET" action="/search/">
+                  <div class="input-group" style="margin-bottom: 0px !important;">
+                    <input class="form-control" type="text" placeholder="Search for..." name="title">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="button" style="margin-top: auto;">Find</button>
+                    </span>
+                  </div>
                 </form>
                 <ul class="nav navbar-nav pull-right">
                   {% if user and not user.is_anonymous %}
@@ -94,20 +99,20 @@
         <div class="collapse navbar-toggleable-xs" id="collapseEx2 category">
             <!--Links-->
             <ul class="nav navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Graphics & Design</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/category/graphics-design">Graphics & Design</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Digital Marketing</a>
+                    <a class="nav-link" href="/category/digital-marketing">Digital Marketing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Video & Animation</a>
+                    <a class="nav-link" href="/category/video-animation">Video & Animation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Music & Audio</a>
+                    <a class="nav-link" href="/category/music-audio">Music & Audio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Programming & Tech</a>
+                    <a class="nav-link" href="/category/programming-tech">Programming & Tech</a>
                 </li>
         <!--/.Collapse content-->
 

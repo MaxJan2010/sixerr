@@ -36,11 +36,12 @@ def gig_detail(request, id):
     except Gig.DoesNotExist:
         return redirect('/')
 
-    # First check if user is logged in
+    # 1. First check if user is logged in
+    # 2. If current user has never made any purchase for this gig
+    # 3. If current user has already made a review for this gig
+
     if request.user.is_anonymous() or \
-        # If current user has never made any purchase for this gig
         Purchase.objects.filter(gig=gig, buyer=request.user).count() == 0 or \
-        # If current user has already made a review for this gig
         Review.objects.filter(gig=gig, user=request.user).count() > 0:
         # Then hide the review form
         show_post_review = False
@@ -157,3 +158,12 @@ def category(request, link):
         "music-audio": "MA",
         "programming-tech": "PT"
     }
+    try:
+        gigs = Gig.objects.filter(category=categories[link])
+        return render(request, 'home.html', {"gigs": gigs})
+    except KeyError:
+        return redirect('home')
+
+def search(request):
+    gigs = Gig.objects.filter(title__contains=request.GET['title'])
+    return render(request, 'home.html', {"gigs": gigs})

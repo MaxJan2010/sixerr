@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^checkout/$', views.create_purchase, name="create_purchase"),
     url(r'^my_sales/$', views.my_sales, name="my_sales"),
     url(r'^my_orders/$', views.my_orders, name="my_orders"),
+    url(r'^category/(?P<link>[\w|-]+)/$', views.category, name='category'),
+    url(r'^search/$', views.search, name="search"),
 ]
