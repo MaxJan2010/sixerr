@@ -48,7 +48,7 @@ class Review(models.Model):
     gig = models.ForeignKey(Gig)
     user = models.ForeignKey(User)
     content = models.CharField(max_length=500)
-    star = models.IntegerField
+    star = models.CharField(max_length=1)
 
     def __str__(self):
         return self.content

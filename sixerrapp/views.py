@@ -21,16 +21,37 @@ def test(request):
     return render(request, 'test.html', {})
 
 def gig_detail(request, id):
+    # If a form is submitted AND user is logged in AND there is stuff in review content and that content isnt empty
+    if request.method == 'POST' and \
+        not request.user.is_anonymous() and \
+        Purchase.objects.filter(gig_id=id, buyer=request.user).count() > 0 and \
+        'content' in request.POST and \
+        request.POST['content'].strip() != '':
+        # then create new review object
+        Review.objects.create(content=request.POST['content'], gig_id=id, user=request.user, star=request.POST['star'])
+
+
     try:
         gig = Gig.objects.get(id=id)
     except Gig.DoesNotExist:
         return redirect('/')
 
+    # First check if user is logged in
+    if request.user.is_anonymous() or \
+        # If current user has never made any purchase for this gig
+        Purchase.objects.filter(gig=gig, buyer=request.user).count() == 0 or \
+        # If current user has already made a review for this gig
+        Review.objects.filter(gig=gig, user=request.user).count() > 0:
+        # Then hide the review form
+        show_post_review = False
+    else:
+        # then check if user has purchased this gig
+        show_post_review = Purchase.objects.filter(gig=gig, buyer=request.user).count() > 0
     # Get all reviews belonging to this gig id
     reviews = Review.objects.filter(gig=gig)
     # generate a client token for braintree
     client_token = braintree.ClientToken.generate()
-    return render(request, 'gig_detail.html', {"reviews": reviews, "gig": gig, "client_token": client_token})
+    return render(request, 'gig_detail.html', {"show_post_review": show_post_review, "reviews": reviews, "gig": gig, "client_token": client_token})
 
 
 @login_required(login_url="/")
@@ -126,3 +147,13 @@ def my_sales(request):
 def my_orders(request):
     purchases = Purchase.objects.filter(buyer=request.user)
     return render(request, 'my_orders.html', {"purchases": purchases})
+
+
+def category(request, link):
+    categories = {
+        "graphics-design": "GD",
+        "digital-marketing": "DM",
+        "video-animation": "VA",
+        "music-audio": "MA",
+        "programming-tech": "PT"
+    }
