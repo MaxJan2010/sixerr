@@ -11,90 +11,92 @@
     </div>
   {% endif %}
 
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+  <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="container">
+        <div class="col-md-6 col-md-offset-2">
+          <div class="card">
+            <h3 class="card-header primary-color white-text" align="center">Edit Gig</h3>
+            <div class="card-block">
 
-        <div class="md-form">
-          <div class="col-md-2">
-            <label>Gig Title</label>
-          </div>
-          <div class="col-md-10">
-            <input value="{{ gig.title }}" type="text" id="title" class="form-control">
-          </div>
-        </div>
-
-        <div class="md-form">
-          <div class="col-md-2">
-            <label>Category</label>
-          </div>
-          <div class="col-md-10">
-            <select class="form-control" name="category" value="{{ gig.category }}" id="category">
-              <option {% if gig.category == "GD" %} selected {% endif %} value="GD">Graphics & Design</option>
-              <option {% if gig.category == "DM" %} selected {% endif %} value="DM">Digital & Marketing</option>
-              <option {% if gig.category == "VA" %} selected {% endif %} value="VA">Video & Animation</option>
-              <option {% if gig.category == "MA" %} selected {% endif %} value="MA">Music & Audio</option>
-              <option {% if gig.category == "PT" %} selected {% endif %} value="PT">Programming & Tech</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="md-form">
-          <div class="col-md-2">
-            <label>Description</label>
-          </div>
-          <div class="col-md-10">
-            <input value="{{ gig.description }}" type="text" id="description" class="form-control">
-          </div>
-        </div>
-
-        <div class="md-form">
-          <div class="col-md-2">
-            <label>Price (£)</label>
-          </div>
-          <div class="col-md-10">
-            <input value="{{ gig.price }}" type="text" id="price" class="form-control">
-          </div>
-        </div>
-
-        <div class="md-form">
-          <div class="col-md-2">
-            <label>Current Photo</label>
-          </div>
-          <div class="col-md-10">
-            <div class="file-field">
-              <div class="btn btn-primary">
-                  <span>Choose file</span>
-                  <input type="file">
+              <div class="md-form form-group">
+                <i class="fa fa-pencil prefix"></i>
+                <input autofocus="autofocus" id="title" class="form-control validate" type="text" name="title" value="{{ gig.title }}">
+                <label for="title" data-error="wrong" data-success="right" class="">Enter your gig title</label><br>
               </div>
-              <div class="file-path-wrapper">
-                 <input class="file-path validate" type="text" {% if gig.photo %} placeholder="{{ gig.photo }}" {% else %} placeholder="Upload a photo for your gig" {% endif %} id="photo">
+
+              <div class="md-form form-group">
+                <div class="row">
+                  <div class="col-md-1">
+                    <i class="fa fa-bars prefix" style="margin-top: 6px"></i>
+                  </div>
+                  <div class="col-md-11">
+                    <select class="form-control" name="category" value="{{ gig.category }}" id="category">
+                      <option {% if gig.category == "GD" %} selected {% endif %} value="GD">Graphics & Design</option>
+                      <option {% if gig.category == "DM" %} selected {% endif %} value="DM">Digital & Marketing</option>
+                      <option {% if gig.category == "VA" %} selected {% endif %} value="VA">Video & Animation</option>
+                      <option {% if gig.category == "MA" %} selected {% endif %} value="MA">Music & Audio</option>
+                      <option {% if gig.category == "PT" %} selected {% endif %} value="PT">Programming & Tech</option>
+                    </select>
+                  </div>
+                </div>
               </div>
+
+              <div class="md-form">
+                <i class="fa fa-pencil-square-o prefix"></i>
+                <textarea name="description" type="text" id="description" class="md-textarea">{{ gig.description }}</textarea>
+                <label for="description">Enter a description for this gig</label>
+              </div>
+
+              <div class="md-form form-group">
+                <i class="fa fa-gbp prefix"></i>
+                <input id="price" class="form-control validate" type="text" name="price" value="{{ gig.price }}">
+                <label for="price" data-error="wrong" data-success="right" class="">Enter your gig price</label><br>
+              </div>
+
+              <div class="md-form">
+                <div class="file-field">
+                  <div class="btn btn-primary">
+                      <span>Upload Photo</span>
+                      <input type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                     <input class="file-path validate" type="text" {% if gig.photo %} placeholder="{{ gig.photo }}" {% else %} placeholder="Upload a photo for your gig" {% endif %} id="photo">
+                  </div>
+                </div>
+              </div>
+
+              <br><br>
+              <div class="md-form form-group">
+                <div class="row">
+                  <div class="col-md-1">
+                    <i class="fa fa-gear prefix" style="margin-top: 6px"></i>
+                  </div>
+                  <div class="col-md-11">
+                    <select class="form-control" name="status">
+                      <option value="1" {% if gig.status %} selected {% endif %} >Active</option>
+                      <option value="" {% if not gig.status %} selected {% endif %} >Disabled</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="md-form">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Edit Gig</button>
+                </div>
+              </div>
+
+
+              <!-- <div class="md-form form-group">
+                <i class="fa fa-envelope prefix"></i>
+                <input id="email" class="form-control validate" type="email" value="" name="user[email]">
+                <label for="email" data-error="wrong" data-success="right">Type your email</label><br>
+              </div> -->
+
             </div>
           </div>
         </div>
-
-        <div class="md-form">
-          <div class="col-md-2">
-            <label>Status</label>
-          </div>
-          <div class="col-md-10">
-            <select class="form-control" name="status" id="status">
-              <option value="1" {% if gig.status %} selected {% endif %} >Active</option>
-              <option value="" {% if not gig.status %} selected {% endif %} >Disabled</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success">Edit Gig</button>
-          </div>
-        </div>
-
-      </form>
-    </div>
-  </div>
-
+      </div>
+  </form>
 {% endblock %}
