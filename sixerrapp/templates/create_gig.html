@@ -11,70 +11,94 @@
     </div>
   {% endif %}
 
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <form class="form-horizontal" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+<form class="form-horizontal" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+      <div class="col-md-6 col-md-offset-2">
+        <div class="card">
+          <h3 class="card-header" align="center">Create Gig</h3>
+          <div class="card-block">
 
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Gig Title</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" name="title" rows="3"></textarea>
+            <div class="md-form form-group">
+              <i class="fa fa-pencil prefix"></i>
+              <input autofocus="autofocus" id="title" class="form-control validate" type="text" name="title">
+              <label for="title" data-error="wrong" data-success="right" class="">Enter your gig title</label><br>
+            </div>
+
+            <div class="md-form form-group">
+              <div class="row">
+                <div class="col-md-1">
+                  <i class="fa fa-bars prefix" style="margin-top: 6px"></i>
+                </div>
+                <div class="col-md-11">
+                  <select class="form-control" name="category">
+                    <option value="GD">Graphics & Design</option>
+                    <option value="DM">Digital & Marketing</option>
+                    <option value="VA">Video & Animation</option>
+                    <option value="MA">Music & Audio</option>
+                    <option value="PT">Programming & Tech</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="md-form">
+              <i class="fa fa-pencil-square-o prefix"></i>
+              <textarea name="description" type="text" id="description" class="md-textarea"></textarea>
+              <label for="description">Enter a description for this gig</label>
+            </div>
+
+            <div class="md-form form-group">
+              <i class="fa fa-gbp prefix"></i>
+              <input id="price" class="form-control validate" type="text" name="price">
+              <label for="price" data-error="wrong" data-success="right" class="">Enter your gig price</label><br>
+            </div>
+
+            <div class="md-form">
+              <div class="file-field">
+                  <div class="btn btn-primary">
+                      <span>Upload A Photo</span>
+                      <input type="file" name="photo">
+                  </div>
+                  <div class="file-path-wrapper">
+                     <input class="file-path validate" type="text" placeholder="Upload your file">
+                  </div>
+              </div>
+            </div>
+
+            <br><br>
+            <div class="md-form form-group">
+              <div class="row">
+                <div class="col-md-1">
+                  <i class="fa fa-gear prefix" style="margin-top: 6px"></i>
+                </div>
+                <div class="col-md-11">
+                  <select class="form-control" name="status">
+                    <option value="" disabled selected>Choose your gig status</option>
+                    <option value="1">Active</option>
+                    <option value="0">Disabled</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="md-form">
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Create Gig</button>
+              </div>
+            </div>
+
+
+            <!-- <div class="md-form form-group">
+              <i class="fa fa-envelope prefix"></i>
+              <input id="email" class="form-control validate" type="email" value="" name="user[email]">
+              <label for="email" data-error="wrong" data-success="right">Type your email</label><br>
+            </div> -->
+
           </div>
         </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Category</label>
-          <div class="col-sm-10">
-            <select class="form-control" name="category">
-              <option value="GD">Graphics & Design</option>
-              <option value="DM">Digital & Marketing</option>
-              <option value="VA">Video & Animation</option>
-              <option value="MA">Music & Audio</option>
-              <option value="PT">Programming & Tech</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Description</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" name="description" rows="3"></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Price (£)</label>
-          <div class="col-sm-10">
-            <input type="number" class="form-control" name="price" value="6">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Photo</label>
-          <div class="col-sm-10">
-            <input type="file" class="form-control" name="photo">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Status</label>
-          <div class="col-sm-10">
-            <select class="form-control" name="status">
-              <option value="1">Active</option>
-              <option value="0">Disabled</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btm btn-primary">Create Gig</button>
-          </div>
-        </div>
-
-      </form>
+      </div>
     </div>
-  </div>
+</form>
 
 {% endblock %}
