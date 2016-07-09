@@ -8,5 +8,7 @@ def save_avatar(backend, user, response, *args, **kwargs):
 
     if backend.name == 'facebook':
         profile.avatar = 'http://graph.facebook.com/%s/picture?type=large' % response['id']
+    elif backend.name == 'twitter':
+        profile.avatar = response.get('profile_image_url', '').replace('_normal', '')
 
     profile.save()

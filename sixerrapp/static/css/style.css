@@ -1,5 +1,9 @@
 /* YOUR CUSTOM STYLES */
 
+.noml {
+  margin-left: 0px !important;
+}
+
 a {
   color: #323232;
 }

@@ -129,6 +129,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend'
 )
 
@@ -136,6 +138,16 @@ LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '259468097756069'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ffe160f7508ce7773d36ff74e42b79f9'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
+}
+SOCIAL_AUTH_TWITTER_KEY = 'dn5Jo0McrIMstRFmeZs6MtHd2'
+SOCIAL_AUTH_TWITTER_SECRET = 'BdHj2GAVWxfam69pR7GoZP6byjINsuVU0DDbR6b3ZRFjU5vXrb'
+SOCIAL_AUTH_TWITTER_SCOPE = ['email']
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '240508892653-2qns9e7527phukd627covs4a1mletcmh.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'OcEKOQoU774n0EiyyaGPfUEn'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
 
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
@@ -143,6 +155,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.auth_allowed',
     'social.pipeline.social_auth.social_user',
     'social.pipeline.user.get_username',
+    'social.pipeline.social_auth.associate_by_email',  # <--- enable this one
     'social.pipeline.user.create_user',
     'sixerrapp.social_auth_pipeline.save_avatar',  # <--- set the path to the function
     'social.pipeline.social_auth.associate_user',
