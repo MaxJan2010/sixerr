@@ -1,7 +1,7 @@
 /* YOUR CUSTOM STYLES */
 
 #hero {
-  background: url("/static/img/bg.jpg");
+  background: url("/static/img/cubes.png");
   min-height: 1024px;
   background-repeat: no-repeat;
   background-size: cover;
