@@ -1,5 +1,14 @@
 /* YOUR CUSTOM STYLES */
 
+#hero {
+  background: url("/static/img/bg.jpg");
+  min-height: 1024px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -110px;
+  margin-bottom: 45px;
+}
+
 .noml {
   margin-left: 0px !important;
 }
