@@ -116,7 +116,16 @@ def profile(request, username):
         except Profile.DoesNotExist:
             return redirect('/')
     gigs = Gig.objects.filter(user=profile.user, status=True)
-    return render(request, 'profile.html', {"profile": profile, "gigs": gigs})
+
+
+    # First we must get all gigs created by profile user - both active and inactive as we
+    # want to display ALL reviews for ALL gigs, not jsut active ones for the above list
+    gig = Gig.objects.filter(user=profile.user)
+    # Then we create a list of review objects based on the profile user
+    reviews = Review.objects.filter(gig=gig)
+
+
+    return render(request, 'profile.html', {"profile": profile, "gigs": gigs, "reviews": reviews})
 
 
 @login_required(login_url="/")

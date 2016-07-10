@@ -3,10 +3,11 @@
 #hero {
   background: url("/static/img/cubes.png");
   min-height: 1024px;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /*background-repeat: no-repeat;
+  background-size: cover;*/
   margin-top: -110px;
   margin-bottom: 45px;
+  position: static;
 }
 
 .noml {

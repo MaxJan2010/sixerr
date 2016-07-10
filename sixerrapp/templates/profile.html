@@ -2,8 +2,7 @@
 {% load staticfiles %}
 
 {% block page %}
-
-
+<div class="container">
   <form method="POST">
     {% csrf_token %}
     <div class="jumbotron" align="center">
@@ -61,4 +60,35 @@
       </div>
     </div>
   </form>
+
+  <div class="card">
+      <h6 class="card-header primary-color white-text">All reviews for {{ profile.user.username }}</h6>
+      <div class="card-block">
+        {% if reviews %}
+          {% for review in reviews %}
+            <div class="media">
+              <a class="media-left waves-light">
+                  <img class="img-circle" src="{% if review.user.profile %} {{ review.user.profile.avatar }} {% else %} {% static 'img/avatar.png' %} {% endif %}" style="max-width: 70px;">
+              </a>
+              <div class="media-body">
+                  <h4 class="media-heading">{{ review.user.username }}</h4>
+                  <ul class="inline-ul">
+                      <li><i class="fa fa-star {% if review.star >= '1' %} amber-text {% endif %}"></i></li>
+                      <li><i class="fa fa-star {% if review.star >= '2' %} amber-text {% endif %}"></i></li>
+                      <li><i class="fa fa-star {% if review.star >= '3' %} amber-text {% endif %}"></i></li>
+                      <li><i class="fa fa-star {% if review.star >= '4' %} amber-text {% endif %}"></i></li>
+                      <li><i class="fa fa-star {% if review.star >= '5' %} amber-text {% endif %}"></i></li>
+                  </ul>
+                  <p>{{ review.content }}</p>
+                  <small>Review for task: {{ review.gig.title }}</small>
+              </div>
+            </div>
+          {% endfor %}
+
+        {% else %}
+          No reviews
+        {% endif %}
+      </div>
+  </div>
+</div>
 {% endblock %}
