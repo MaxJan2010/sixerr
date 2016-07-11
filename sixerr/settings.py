@@ -128,6 +128,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 AUTHENTICATION_BACKENDS = (
+    'social.backends.linkedin.LinkedinOAuth2',
     'social.backends.facebook.FacebookOAuth2',
     'social.backends.google.GoogleOAuth2',
     'social.backends.twitter.TwitterOAuth',
@@ -148,6 +149,16 @@ SOCIAL_AUTH_TWITTER_SCOPE = ['email']
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '240508892653-2qns9e7527phukd627covs4a1mletcmh.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'OcEKOQoU774n0EiyyaGPfUEn'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '770pkwep1f98cm'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = '073InHkkbZMK0pjr'
+# Add email to requested authorizations.
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SCOPE = ['r_basicprofile', 'r_emailaddress']
+# Add the fields so they will be requested from linkedin.
+SOCIAL_AUTH_LINKEDIN_OAUTH2_FIELD_SELECTORS = ['email-address']
+# Arrange to add the fields to UserSocialAuth.extra_data
+SOCIAL_AUTH_LINKEDIN_OAUTH2_EXTRA_DATA = [('firstName', 'first_name'),
+                                   ('lastName', 'last_name'),
+                                   ('emailAddress', 'email_address')]
 
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
