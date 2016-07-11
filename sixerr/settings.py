@@ -154,11 +154,13 @@ SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = '073InHkkbZMK0pjr'
 # Add email to requested authorizations.
 SOCIAL_AUTH_LINKEDIN_OAUTH2_SCOPE = ['r_basicprofile', 'r_emailaddress']
 # Add the fields so they will be requested from linkedin.
-SOCIAL_AUTH_LINKEDIN_OAUTH2_FIELD_SELECTORS = ['email-address']
+SOCIAL_AUTH_LINKEDIN_OAUTH2_FIELD_SELECTORS = ['email-address', 'public-profile-url', 'picture-url']
 # Arrange to add the fields to UserSocialAuth.extra_data
 SOCIAL_AUTH_LINKEDIN_OAUTH2_EXTRA_DATA = [('firstName', 'first_name'),
                                    ('lastName', 'last_name'),
-                                   ('emailAddress', 'email_address')]
+                                   ('emailAddress', 'email_address'),
+                                   ('picture-url', 'picture_url'),
+                                   ('public-profile-url', 'public_profile_url')]
 
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',

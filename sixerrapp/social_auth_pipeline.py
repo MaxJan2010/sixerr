@@ -14,5 +14,11 @@ def save_avatar(backend, user, response, *args, **kwargs):
         url = response['image'].get('url')
         ext = url.split('.')[-1]
         profile.avatar = url
+    # elif backend.name == 'linkedin-oauth2':
+    #     fullname = profile.user.first_name + profile.user.last_name
+    #     image_name = 'linked_avatar_%s.jpg' % fullname
+    #     image_url = kwargs['response'].get['pictureUrl']
+    #     image_stream = urlopen(image_url)
+    #     profile.avatar.save(image_name, ContentFile(image_stream.read()),)
 
     profile.save()
