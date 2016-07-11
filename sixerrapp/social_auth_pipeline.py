@@ -13,5 +13,6 @@ def save_avatar(backend, user, response, *args, **kwargs):
     elif backend.name == 'google-oauth2':
         url = response['image'].get('url')
         ext = url.split('.')[-1]
+        profile.avatar = url
 
     profile.save()

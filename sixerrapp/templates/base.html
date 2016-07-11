@@ -70,6 +70,7 @@
                                 <h3><i class="fa fa-user"></i> Login with:</h3>
                                 <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}" class="btn-floating btn-fb btn-small"><i class="fa fa-facebook"></i></a>
                                 <a href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}" class="btn-floating btn-gplus btn-small"><i class="fa fa-google-plus"></i></a>
+                                <a href="{% url 'social:begin' 'linkedin-oauth2' %}?next={{request.path}}" class="btn-floating btn-li btn-small"><i class="fa fa-linkedin"></i></a>
                             </div>
                             <!--Body-->
                             <div class="modal-body">
