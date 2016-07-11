@@ -22,4 +22,4 @@ requests==2.10.0
 requests-oauthlib==0.6.1
 six==1.10.0
 whitenoise==3.2
-psycopg2-2.6.2
+psycopg==2-2.6.2
