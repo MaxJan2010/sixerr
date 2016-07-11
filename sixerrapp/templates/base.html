@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' type='text/css'>
     <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Montserrat:400,700' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>    <script src="{% static 'js/jquery-2.2.3.js' %}"></script>
-    <script src="{% static 'js/vendor/modernizr.js' %}"></script>
-
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>    <script src="{% static 'js/jquery-2.2.3.js' %}"></script>
 
 
   </head>
@@ -31,64 +29,51 @@
       }(document, 'script', 'facebook-jssdk'));</script>
 
 
-    <section id="navigation">
-            <ul class="nav navbar-nav pull-right" id="profilemenu">
-              {% if user and not user.is_anonymous %}
-              <li class="nav-item dropdown btn-group">
-                  <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{% if user.profile %} {{ user.profile.avatar }} {% else %} {% static 'img/avatar.png' %} {% endif %}" class="img-circle" height="22" width="22">&nbsp;
-                    {{ user.get_full_name|default:user.username }} <span class="caret"></span>
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <a class="dropdown-item" href="{% url 'create_gig' %}">Create Gig</a>
-                      <a class="dropdown-item" href="{% url 'my_gigs' %}">My Gigs</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="{% url 'my_orders' %}">My Orders</a>
-                      <a class="dropdown-item" href="{% url 'my_sales' %}">My Sales</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="{% url 'profile' user.username %}">My Profile</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="{% url 'auth:logout' %}?next={{request.path}}">Logout</a>
-                  </div>
-              </li>
-              {% else %}
-                <li class="nav-item pull-xs-right noml">
-                    <button type="button" class="btn btn-primary btn-rounded" id="loginbtn" data-toggle="modal" data-target="#modal-login"><i class="fa fa-sign-in"></i> Login</button>
-                  </a>
-                </li>
 
-                <!-- Modal Register -->
-                <div class="modal fade modal-ext" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <!--Content-->
-                        <div class="modal-content">
-                            <!--Header-->
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h3><i class="fa fa-user"></i> Login with:</h3>
-                                <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}" class="btn-floating btn-fb btn-small"><i class="fa fa-facebook"></i></a>
-                                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}" class="btn-floating btn-gplus btn-small"><i class="fa fa-google-plus"></i></a>
-                                <a href="{% url 'social:begin' 'linkedin-oauth2' %}?next={{request.path}}" class="btn-floating btn-li btn-small"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                            <!--Body-->
-                            <div class="modal-body">
-                              <p class="card-text">No need to waste time filling in forms. Sign up via your Facebook or Google account.</p>
-                            </div>
-                        </div>
-                        <!--/.Content-->
-                    </div>
-                </div>
-              {% endif %}
-            </ul>
-          </div>
-              <!--/.Collapse content-->
 
+    <section id="menu">
+      <!-- SideNav slide-out button -->
+      <a style="position: relative; float: right; margin-right: 45px;" href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars fa-2x"></i></a>
+
+      <!--/. SideNav slide-out button -->
+
+      <!-- Sidebar navigation -->
+      <ul id="slide-out" class="side-nav admin-side-nav light-side-nav">
+
+           <div class="logo-wrapper">
+              <img src="{% if user.profile %} {{ user.profile.avatar }} {% else %} {% static 'img/avatar.png' %} {% endif %}" class="img-fluid img-circle">
+              <div class="rgba-stylish-strong"><p class="user white-text">{% if user.profile %} {{ user.first_name }} {{ user.last_name }} {% else %} You are not logged in {% endif %}<br>
+              {% if user.profile %} {{ user.email }} {% else %} {% endif %}&nbsp;</p></div>
           </div>
-      </nav>
-      </div>
-      </section>
+          <!--/. Logo -->
+
+          {% if user and not user.is_anonymous %}
+          <!-- Side navigation links -->
+          <ul class="collapsible collapsible-accordion">
+              <h6 class="dropdown-header">About Me</h6>
+              <hr class="hrnomargin">
+              <li class="noborder"><a href="{% url 'profile' user.username %}" class="waves-effect"><i class="fa fa-home"></i> My Profile</a></li>
+              <h6 class="dropdown-header">Tasks & Orders</h6>
+              <hr class="hrnomargin">
+              <li class="noborder"><a href="{% url 'my_gigs' %}" class="waves-effect"><i class="fa fa-users"></i> My Tasks</a></li>
+              <li><a href="{% url 'my_orders' %}" class="waves-effect"><i class="fa fa-line-chart"></i> My Orders</a></li>
+              <li class="noborder"><a href="{% url 'my_sales' %}" class="waves-effect"><i class="fa fa-money"></i> My Sales</a></li>
+              <h6 class="dropdown-header">Actions</h6>
+              <hr class="hrnomargin">
+              <li class="noborder"><a href="{% url 'create_gig' %}" class="waves-effect"><i class="fa fa-search"></i> Create Task</a></li>
+              <li><a href="{% url 'auth:logout' %}?next={{request.path}}" class="waves-effect"><i class="fa fa-share-alt"></i> Logout</a></li>
+          </ul>
+          {% else %}
+          <ul class="collapsible collapsible-accordion">
+              <a style="padding-left: 10px" href="{% url 'social:begin' 'facebook' %}?next={{request.path}}"><button type="button" class="btn btn-fb"><i class="fa fa-facebook left"></i> Login with Facebook</button></a>
+              <a style="padding-left: 10px" href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}"><button type="button" class="btn btn-gplus"><i class="fa fa-google-plus left"></i> Login with Google +</button></a>
+              <a style="padding-left: 10px" href="{% url 'social:begin' 'linkedin-oauth2' %}?next={{request.path}}"><button type="button" class="btn btn-li"><i class="fa fa-linkedin left"></i> Login with Linkedin</button></a>
+          </ul>
+          {% endif %}
+          <!--/. Side navigation links -->
+      </ul>
+      <!--/. Sidebar navigation -->
+    </section>
 
     <section id="body">
         {% block page %}
@@ -148,10 +133,12 @@
         <script src="{% static 'js/tether.js' %}"></script>
         <script src="{% static 'js/bootstrap.js' %}"></script>
         <script src="{% static 'js/mdb.js' %}"></script>
-        <script src="{% static 'js/vendor.js' %}"></script>
-        <script src="{% static 'js/plugins.js' %}"></script>
-        <script src="{% static 'js/main.js' %}"></script>
-        <script src="{% static 'js/particles.js' %}"></script>
+        <script>
+          $('.button-collapse').sideNav({
+            edge: 'right', // Choose the horizontal origin
+            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+          });
+        </script>
     </footer>
 
   </body>

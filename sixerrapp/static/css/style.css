@@ -1,5 +1,14 @@
 /* YOUR CUSTOM STYLES */
 
+.hrnomargin {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.noborder {
+  border-bottom: none !important;
+}
+
 #options {
   color: #fff;
   margin-top: 50px;
