@@ -1,13 +1,49 @@
 /* YOUR CUSTOM STYLES */
 
+.orangetext {
+  color: orange;
+}
+
+#herotitle {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+  font-family: Ubuntu;
+  font-weight: 100;
+}
+
+#herosub {
+  text-align: center;
+  color: #fff;
+  font-family: Ubuntu;
+  font-weight: 100;
+}
+
+#loginbtn {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat;
+}
+
+p {
+  font-family: Lato;
+}
+
+button {
+  font-family: Lato;
+}
+
 #hero {
-  background: url("/static/img/cubes.png");
-  min-height: 1024px;
-  /*background-repeat: no-repeat;
-  background-size: cover;*/
-  margin-top: -110px;
+  background: url("/static/img/background.jpeg");
+  min-height: 1100px;
+  margin-top: -310px;
   margin-bottom: 45px;
   position: static;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .noml {
@@ -16,6 +52,7 @@
 
 a {
   color: #323232;
+  font-family: Lato;
 }
 
 a:hover {

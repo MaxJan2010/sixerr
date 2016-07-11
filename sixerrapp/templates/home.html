@@ -3,7 +3,16 @@
 {% block page %}
 <div class="row">
   <div class="col-md-12" id="hero">
+    <div id="herologo" align="center" style="margin-top: 300px;">
+      <img src="{% static 'img/tiger-logo.png' %}" alt="Task Tiger" height="100"/>
+    </div>
+    <h1 id="herotitle">Welcome to Task<span class="orangetext">Tiger</span></h1>
+    <p id="herosub">A place to get your chores done for less than £10</p>
+
+  </div>
 </div>
+
+
 <div class="container">
   <div class="row">
     {% for gig in gigs %}

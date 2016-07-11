@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://use.typekit.net/bvl3cit.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <meta charset="utf-8">
     <title>Sixerr App</title>
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
@@ -11,8 +13,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' type='text/css'>
     <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Montserrat:400,700' type='text/css'>
-    <script src="{% static 'js/jquery-2.2.3.js' %}"></script>
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>    <script src="{% static 'js/jquery-2.2.3.js' %}"></script>
     <script src="{% static 'js/vendor/modernizr.js' %}"></script>
+
 
 
   </head>
@@ -79,7 +82,7 @@
                     </li>
                     {% else %}
                       <li class="nav-item pull-xs-right noml">
-                          <button type="button" class="btn btn-gplus" data-toggle="modal" data-target="#modal-login"><i class="fa fa-google"></i> Social Media Login</button>
+                          <button type="button" class="btn btn-primary btn-rounded" id="loginbtn" data-toggle="modal" data-target="#modal-login"><i class="fa fa-sign-in"></i> Login</button>
                         </a>
                       </li>
 
