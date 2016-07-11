@@ -1,5 +1,28 @@
 /* YOUR CUSTOM STYLES */
 
+#options {
+  color: #fff;
+  margin-top: 50px;
+}
+
+#options-left {
+  text-align: left;
+  margin-left: 470px;
+  padding: 10px 35px;
+  margin-top: 80px;
+}
+
+#options-right {
+  text-align: left;
+      margin-right: 450px;
+      padding: 10px 35px;
+      margin-top: 80px;
+}
+
+#profilemenu {
+  margin-right: 50px;
+}
+
 .orangetext {
   color: orange;
 }
@@ -38,7 +61,7 @@ button {
 
 #hero {
   background: url("/static/img/background.jpeg");
-  min-height: 1100px;
+  min-height: 1200px;
   margin-top: -310px;
   margin-bottom: 45px;
   position: static;
