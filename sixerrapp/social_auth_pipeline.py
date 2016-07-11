@@ -10,5 +10,8 @@ def save_avatar(backend, user, response, *args, **kwargs):
         profile.avatar = 'http://graph.facebook.com/%s/picture?type=large' % response['id']
     elif backend.name == 'twitter':
         profile.avatar = response.get('profile_image_url', '').replace('_normal', '')
+    elif backend.name == 'google-oauth2':
+        url = response['image'].get('url')
+        ext = url.split('.')[-1]
 
     profile.save()
