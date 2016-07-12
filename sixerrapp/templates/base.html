@@ -39,13 +39,12 @@
 
       <!-- Sidebar navigation -->
       <ul id="slide-out" class="side-nav admin-side-nav light-side-nav">
-
-           <div class="logo-wrapper">
-              <img src="{% if user.profile %} {{ user.profile.avatar }} {% else %} {% static 'img/avatar.png' %} {% endif %}" class="img-fluid img-circle">
-              <div class="rgba-stylish-strong"><p class="user white-text">{% if user.profile %} {{ user.first_name }} {{ user.last_name }} {% else %} You are not logged in {% endif %}<br>
-              {% if user.profile %} {{ user.email }} {% else %} {% endif %}&nbsp;</p></div>
-          </div>
-          <!--/. Logo -->
+         <div class="logo-wrapper">
+            <img src="{% if user.profile %} {{ user.profile.avatar }} {% else %} {% static 'img/avatar.png' %} {% endif %}" class="img-fluid img-circle">
+            <div class="rgba-stylish-strong"><p class="user white-text">{% if user.profile %} {{ user.first_name }} {{ user.last_name }} {% else %} You are not logged in {% endif %}<br>
+            {% if user.profile %} {{ user.email }} {% else %} {% endif %}&nbsp;</p></div>
+        </div>
+        <!--/. Logo -->
 
           {% if user and not user.is_anonymous %}
           <!-- Side navigation links -->
@@ -55,12 +54,12 @@
               <li class="noborder"><a href="{% url 'profile' user.username %}" class="waves-effect"><i class="fa fa-home"></i> My Profile</a></li>
               <h6 class="dropdown-header">Tasks & Orders</h6>
               <hr class="hrnomargin">
-              <li class="noborder"><a href="{% url 'my_gigs' %}" class="waves-effect"><i class="fa fa-users"></i> My Tasks</a></li>
+              <li><a href="{% url 'my_gigs' %}" class="waves-effect"><i class="fa fa-users"></i> My Tasks</a></li>
               <li><a href="{% url 'my_orders' %}" class="waves-effect"><i class="fa fa-line-chart"></i> My Orders</a></li>
               <li class="noborder"><a href="{% url 'my_sales' %}" class="waves-effect"><i class="fa fa-money"></i> My Sales</a></li>
               <h6 class="dropdown-header">Actions</h6>
               <hr class="hrnomargin">
-              <li class="noborder"><a href="{% url 'create_gig' %}" class="waves-effect"><i class="fa fa-search"></i> Create Task</a></li>
+              <li><a href="{% url 'create_gig' %}" class="waves-effect"><i class="fa fa-search"></i> Create Task</a></li>
               <li><a href="{% url 'auth:logout' %}?next={{request.path}}" class="waves-effect"><i class="fa fa-share-alt"></i> Logout</a></li>
           </ul>
           {% else %}
@@ -71,7 +70,12 @@
           </ul>
           {% endif %}
           <!--/. Side navigation links -->
+          <div id="herologo" align="center" style="margin-top: 30px;">
+            <img src="{% static 'img/tiger-logo.png' %}" alt="Task Tiger" height="50"/>
+            <h6>Task<span class="orangetext">Tiger</span></h6>
+          </div>
       </ul>
+
       <!--/. Sidebar navigation -->
     </section>
 

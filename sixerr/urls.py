@@ -24,7 +24,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^social/', include('social.apps.django_app.urls', namespace='social')),
     url('^auth/', include('django.contrib.auth.urls', namespace='auth')),
-    url(r'^discussions/', include('discussions.urls')),
 
     # include sixerrapp urls.py file
     url('', include('sixerrapp.urls'))
